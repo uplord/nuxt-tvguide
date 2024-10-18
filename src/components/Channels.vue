@@ -1,7 +1,7 @@
 <template>
   <main>
     <section class="py-6">
-      <div class="container mx-auto px-4">
+      <div class="container mx-auto px-4 max-w-full lg:max-w-screen-xl">
         <h1 class="text-center text-2xl font-bold mb-4">TV Guide</h1>
 
         <div class="flex mb-6">
@@ -30,7 +30,7 @@
         <div v-if="isLoading" class="text-center">Loading...</div>
         <div v-if="error" class="text-center">{{ error }}</div>
 
-        <div v-if="paginatedChannels.length" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div v-if="paginatedChannels.length" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <div
             v-for="channel in paginatedChannels"
             :key="channel.channelid"
@@ -69,7 +69,7 @@ const router = useRouter();
 
 // Reactive variables
 const currentPage = ref(parseInt(route.params.page) || 1);
-const postsPerPage = ref(20);
+const postsPerPage = ref(18);
 const searchQuery = ref('');
 
 // Computed properties for pagination
