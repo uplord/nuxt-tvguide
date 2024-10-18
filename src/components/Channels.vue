@@ -115,7 +115,9 @@ const changeSearchQuery = () => {
   currentPage.value = 1; // Reset to page 1 on search
   const query = searchQuery.value ? { search: searchQuery.value } : {};
   const queryString = new URLSearchParams(query).toString();
-  window.history.pushState({}, null, `/?${queryString}`);
+
+  const newPath = queryString ? `/?${queryString}` : '/';
+  window.history.pushState({}, null, newPath);
 };
 
 // Clear search input and reset pagination
