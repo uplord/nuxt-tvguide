@@ -14,6 +14,7 @@
             ref="searchInput"
           />
           <button
+            v-if="searchQuery"
             @click="clearSearch"
             class="flex items-center justify-center ml-2 p-3 bg-blue-500 text-white rounded hover:bg-blue-600 w-[50px]"
           >
@@ -36,10 +37,13 @@
           <div
             v-for="channel in paginatedChannels"
             :key="channel.channelid"
-            class="border border-x-0 md:border p-4 md:rounded -mx-4 md:mx-0 flex items-start flex-col gap-4"
+            class="border border-x-0 md:border p-4 md:rounded -mx-4 md:mx-0 flex items-start md:flex-col gap-4"
           >
-            <nuxt-img :src="channel.logourl" style="height: 76px" />
-            <h2 class="text-l md:text-xl font-semibold">{{ channel.channelname }}</h2>
+            <nuxt-img :src="channel.logourl" style="height: 76px" loading="lazy" width="135" height="76" />
+            <div class="flex flex-col gap-1 md:gap-2">
+              <h2 class="text-lg md:text-xl font-semibold">{{ channel.channelname }}</h2>
+              <p class="text-xs md:text-base">{{ channel.channeldescription }}</p>
+            </div>
           </div>
         </div>
 
