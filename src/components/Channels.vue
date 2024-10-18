@@ -4,6 +4,14 @@
       <div class="container mx-auto px-4">
         <h1 class="text-center text-2xl font-bold mb-4">TV Guide</h1>
 
+        <!-- Search Field -->
+        <input
+          v-model="searchQuery"
+          type="text"
+          placeholder="Search channels..."
+          class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:border-transparent mb-6"
+        />
+
         <div v-if="paginatedChannels.length" class="text-center mb-4">
           <strong>{{ currentPage }}</strong>
           <span class="mx-1">/</span>
@@ -12,15 +20,6 @@
         
         <div v-if="isLoading" class="text-center">Loading...</div>
         <div v-if="error" class="text-center">{{ error }}</div>
-
-        <!-- Search Field -->
-        <input
-          v-if="paginatedChannels.length"
-          v-model="searchQuery"
-          type="text"
-          placeholder="Search channels..."
-          class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:border-transparent mb-6"
-        />
         
         <div v-if="paginatedChannels.length" class="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div
