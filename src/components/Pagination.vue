@@ -15,7 +15,7 @@
       :disabled="currentPage === 1"
       :class="buttonClass(currentPage === 1)"
     >
-      &lsaquo; Newer
+      &lsaquo; Prev
     </button>
 
     <!-- Current Page / Total Pages -->
@@ -31,7 +31,7 @@
       :disabled="currentPage === totalPages"
       :class="buttonClass(currentPage === totalPages)"
     >
-      Older &rsaquo;
+      Next &rsaquo;
     </button>
 
     <!-- Last Page Button -->

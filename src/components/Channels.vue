@@ -30,13 +30,13 @@
         <div v-if="isLoading" class="text-center">Loading...</div>
         <div v-if="error" class="text-center">{{ error }}</div>
 
-        <div v-if="paginatedChannels.length" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div v-if="paginatedChannels.length" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
           <div
             v-for="channel in paginatedChannels"
             :key="channel.channelid"
-            class="border p-4 rounded"
+            class="border border-x-0 md:border p-4 md:rounded -mx-4 md:mx-0"
           >
-            <h2 class="text-xl font-semibold">{{ channel.channelname }}</h2>
+            <h2 class="text-l md:text-xl font-semibold">{{ channel.channelname }}</h2>
           </div>
         </div>
 
@@ -102,6 +102,7 @@ const handlePageChange = (page) => {
     : queryString ? `/page/${page}?${queryString}` : `/page/${page}`;
 
   window.history.pushState({}, null, newPath);
+  window.scrollTo(0, 0);
 };
 
 // Watch for route changes to keep currentPage updated
