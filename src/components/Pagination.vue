@@ -80,7 +80,3 @@ const goToLastPage = () => {
   if (props.currentPage < props.totalPages) props.handlePageChange(props.totalPages);
 };
 </script>
-
-<style scoped>
-/* Add any additional styles if necessary */
-</style>
