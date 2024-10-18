@@ -3,10 +3,7 @@ export default defineNuxtConfig({
   compatibilityDate: '2024-04-03',
   css: ['~/assets/scss/globals.scss'],
   devtools: { enabled: true },
-  modules: [
-    '@nuxtjs/tailwindcss',
-    '@pinia/nuxt'
-  ],
+  modules: ['@nuxtjs/tailwindcss', '@pinia/nuxt', '@nuxt/image'],
   srcDir: "src/",
   ssr: true,
 })

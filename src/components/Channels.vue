@@ -36,8 +36,9 @@
           <div
             v-for="channel in paginatedChannels"
             :key="channel.channelid"
-            class="border border-x-0 md:border p-4 md:rounded -mx-4 md:mx-0"
+            class="border border-x-0 md:border p-4 md:rounded -mx-4 md:mx-0 flex items-start flex-col gap-4"
           >
+            <nuxt-img :src="channel.logourl" style="height: 76px" />
             <h2 class="text-l md:text-xl font-semibold">{{ channel.channelname }}</h2>
           </div>
         </div>
