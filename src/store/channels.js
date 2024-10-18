@@ -6,7 +6,7 @@ export const useChannelsStore = defineStore('channelsStore', () => {
   const state = reactive({
     channels: [],
     error: null,
-    isLoading: false
+    isLoading: true
   });
 
   const fetchChannels = async () => {
