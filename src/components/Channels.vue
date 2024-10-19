@@ -34,9 +34,10 @@
         <div v-if="error" class="text-center">{{ error }}</div>
 
         <div v-if="paginatedChannels.length" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-          <div
+          <nuxt-link
             v-for="channel in paginatedChannels"
             :key="channel.channelid"
+            :to="'/channel/' + channel.channelid"
             class="border border-x-0 md:border p-4 md:rounded -mx-4 md:mx-0 flex items-start md:flex-col gap-4"
           >
             <nuxt-img :src="channel.logourl" style="height: 76px" loading="lazy" width="135" height="76" />
@@ -44,7 +45,7 @@
               <h2 class="text-lg md:text-xl font-semibold">{{ channel.channelname }}</h2>
               <p class="text-xs md:text-base">{{ channel.channeldescription }}</p>
             </div>
-          </div>
+          </nuxt-link>
         </div>
 
         <div v-if="!paginatedChannels.length && !isLoading">No channels found.</div>
