@@ -40,7 +40,7 @@
             :to="'/channel/' + channel.channelid"
             class="border border-x-0 md:border p-4 md:rounded -mx-4 md:mx-0 flex items-start md:flex-col gap-4"
           >
-            <nuxt-img :src="channel.logourl" style="height: 76px" loading="lazy" width="135" height="76" />
+            <nuxt-img preload :src="channel.logourl" style="height: 76px" loading="lazy" width="135" height="76" />
             <div class="flex flex-col gap-1 md:gap-2">
               <h2 class="text-lg md:text-xl font-semibold">{{ channel.channelname }}</h2>
               <p class="text-xs md:text-base">{{ channel.channeldescription }}</p>
