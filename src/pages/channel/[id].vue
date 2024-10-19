@@ -3,13 +3,13 @@
     <section class="py-6">
       <div class="container mx-auto px-4 max-w-full lg:max-w-screen-xl">
         <h1 class="text-center text-2xl font-bold mb-4">{{  currentChannel.channelname }}</h1>
-        <nuxt-link to="/">Back</nuxt-link>
-        <ul v-if="next7Days" class="flex gap-2 mb-4">
+        <nuxt-link to="/" class="flex mb-4">Back</nuxt-link>
+        <ul v-if="next7Days" class="flex flex-wrap gap-2 mb-4">
           <li v-for="(day, index) in next7Days" :key="index">
             <NuxtLink :to="index ==0 ? `/channel/${id}` : `/channel/${id}?day=${day}`" @click.prevent="updateChannel(day)" :class="{ 'font-bold': day === currentDay }">{{ day }}</NuxtLink>
           </li>
         </ul>
-        <div v-if="!isLoading" class="flex flex-col gap-4">
+        <div v-if="!isLoading" class="flex flex-col gap-4 mb-4">
           <div v-for="program in channel" :key="program.evtId">
             <div class="border p-4 rounded mx-0 flex items-start flex-col gap-2">
               <nuxt-img preload :src="'https://fdp-sv15-image-v1-0.gcprod1.freetime-platform.net/540x360-0/' + program.image" style="height: 76px" loading="lazy" width="135" height="76" />
@@ -19,7 +19,7 @@
             </div>
           </div>
         </div>
-        <nuxt-link v-if="!isLoading" to="/">Back</nuxt-link>
+        <nuxt-link v-if="!isLoading" to="/" class="flex">Back</nuxt-link>
       </div>
     </section>
   </main>
