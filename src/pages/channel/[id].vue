@@ -11,7 +11,7 @@
         </ul>
         <div v-if="!isLoading" class="flex flex-col gap-4">
           <div v-for="program in channel" :key="program.evtId">
-            <div class="border border-x-0 md:border p-4 md:rounded -mx-4 md:mx-0 flex items-start md:flex-col gap-2">
+            <div class="border p-4 rounded mx-0 flex items-start flex-col gap-2">
               <nuxt-img preload :src="'https://fdp-sv15-image-v1-0.gcprod1.freetime-platform.net/540x360-0/' + program.image" style="height: 76px" loading="lazy" width="135" height="76" />
               <h2 class="text-lg md:text-xl font-semibold">{{ program.name }}</h2>
               <p class="text-xs md:text-base">{{ convertTimestampToTime(program.startTime)}} - {{ convertTimestampToTime(program.startTime + program.duration)}}</p>
