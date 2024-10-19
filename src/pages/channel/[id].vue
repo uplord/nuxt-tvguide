@@ -2,11 +2,20 @@
   <main>
     <section class="py-6">
       <div class="container mx-auto px-4 max-w-full lg:max-w-screen-xl">
-        <h1 class="text-center text-2xl font-bold mb-4">{{  currentChannel.channelname }}</h1>
-        <nuxt-link to="/" class="flex mb-4">Back</nuxt-link>
+        <h1 class="text-center text-2xl font-bold mb-4">{{ currentChannel.channelname || 'Loading Channel' }}</h1>
         <ul v-if="next7Days" class="flex flex-wrap gap-2 mb-4">
+          <li>
+            <nuxt-link to="/" class="flex border border-blue-500 px-4 py-2 rounded bg-blue-500 text-white">Back</nuxt-link>
+          </li>
           <li v-for="(day, index) in next7Days" :key="index">
-            <NuxtLink :to="index ==0 ? `/channel/${id}` : `/channel/${id}?day=${day}`" @click.prevent="updateChannel(day)" :class="{ 'font-bold': day === currentDay }">{{ day }}</NuxtLink>
+            <NuxtLink 
+              :to="index ==0 ? `/channel/${id}` : `/channel/${id}?day=${day}`"
+              @click.prevent="updateChannel(day)"
+              class="flex px-3 py-2 border rounded"
+              :class="{ 'border-blue-500': day === currentDay }"
+            >
+                {{ day }}
+            </NuxtLink>
           </li>
         </ul>
         <div v-if="!isLoading" class="flex flex-col gap-4 mb-4">
@@ -19,7 +28,21 @@
             </div>
           </div>
         </div>
-        <nuxt-link v-if="!isLoading" to="/" class="flex">Back</nuxt-link>
+        <ul v-if="!isLoading && next7Days" class="flex flex-wrap gap-2 mb-4">
+          <li>
+            <nuxt-link to="/" class="flex border border-blue-500 px-4 py-2 rounded bg-blue-500 text-white">Back</nuxt-link>
+          </li>
+          <li v-for="(day, index) in next7Days" :key="index">
+            <NuxtLink 
+              :to="index ==0 ? `/channel/${id}` : `/channel/${id}?day=${day}`"
+              @click.prevent="updateChannel(day)"
+              class="flex px-3 py-2 border rounded"
+              :class="{ 'border-blue-500': day === currentDay }"
+            >
+                {{ day }}
+            </NuxtLink>
+          </li>
+        </ul>
       </div>
     </section>
   </main>
@@ -35,7 +58,6 @@ const router = useRouter();
 
 const id = ref(parseInt(route.params.id) || 1);
 const currentDay = ref(route.query.day || 'Saturday');
-const next7Days = ref([])
 const currentChannel = ref([]);
 
 const todayIndex = new Date().getDay()
@@ -55,7 +77,6 @@ const { channels, channel, isLoading, error } = storeToRefs(channelsStore);
 onMounted(async () => {
   await channelsStore.fetchChannels();
   await fetchCurrentChannel(currentDay.value);
-  next7Days.value = getNext7Days();
 });
 
 const fetchCurrentChannel = async (selectedDay) => {
@@ -102,5 +123,7 @@ const getNext7Days = () => {
 
   return days;
 };
+
+const next7Days = ref(getNext7Days());
 
 </script>
